@@ -1,0 +1,44 @@
+{% extends "bootstrap/base.html" %}
+
+{% block content %}
+   <div class="container">
+   <p></p>
+        <h1 class="text-center text-danger mt-5 pt-5">SMS SPAM DETECTION </h1>
+    </div><br><br><br>
+    <div class="row">
+        <div class="col-md-6">
+            <img src="{{url_for('static',filename='../static/images/image.JPG')}}" style="height:500px;width:800px;">
+        </div><br>
+         <div class="tochis col-md-6" style="">
+        <form class="form-group text-center text-danger"  action="{{url_for('predict')}}" method="POST">
+            <label><h2> Please Enter SMS Message here</h2></label><br><br>
+            <textarea name="comments" cols="80" rows="10"></textarea><br>
+            
+            <input type="submit"  value="Classify" class="btn btn-danger">
+        </form><br><br>
+        <h1 class="text-center text-white mt-5 pt-5">Result </h1>
+
+    </div> 
+        </div>
+       
+    </div>
+    
+    <div>
+    </div>
+    <div class="result btn-danger text-center" style="height: 30px;">
+        {% if empty %}
+        <div> <h2>Blank Page, please fill in a message</h2>
+        {% endif %}
+        {% if prediction == 1%}
+        <h2> it is a spam</h2>
+        {% elif prediction == 0%}
+        <h2> it's Ham (Legitimate) Message</h2></div>
+        {% endif %}
+        
+    </div>  
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+{% endblock %}
